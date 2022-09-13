@@ -9,5 +9,24 @@
     "lodash": "^4.17.21",
     "mongoose": "^6.6.0",
     "nodemon": "^2.0.19"
-  }
+  },
+  "name": "tp-groupe-api-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arthance/tp-groupe-api-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arthance/tp-groupe-api-node/issues"
+  },
+  "homepage": "https://github.com/Arthance/tp-groupe-api-node#readme",
+  "description": ""
 }
