@@ -1,7 +1,7 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import _ from "lodash";
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -23,7 +23,7 @@ usersRouter.post("/signup", async (req, res) => {
   return res.status(201).send(_.pick(newUser, ["name", "surname", "email"]));
 });
 
-usersRouter.post("/login", async (req, res) => {
+usersRouter.post("/signin", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
     return res.status(404).send(`Adresse email ou mot de passe incorrect.`);
@@ -41,17 +41,10 @@ usersRouter.post("/login", async (req, res) => {
   });
 });
 
-usersRouter.post("/update", async (req, res) => {
+usersRouter.post("/update", async (req, res) => {});
 
-});
+usersRouter.post("/delete", async (req, res) => {});
 
-usersRouter.post("/delete", async (req, res) => {
-
-});
-
-usersRouter.post("/becomeTeacher", async (req, res) => {
-
-});
-
+usersRouter.post("/becomeTeacher", async (req, res) => {});
 
 export default usersRouter;
