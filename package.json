@@ -12,7 +12,7 @@
   },
   "name": "tp-groupe-api-node",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.js",
   "type": "module",
   "devDependencies": {},
   "scripts": {
