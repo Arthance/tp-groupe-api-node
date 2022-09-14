@@ -10,6 +10,7 @@ export default function loading(app) {
 	app.use(express.json());
 	app.use(cors());
 	app.use("/jojolearning/users", usersRouter);
+
 	// app.use("/jojolearning/videos", videosRouter);
 	// app.use("/jojolearning/courses", coursesRouter);
 	app.listen(PORT, () => {
