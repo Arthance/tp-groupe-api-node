@@ -48,14 +48,14 @@ usersRouter.post("/signin", async (req, res) => {
 // MISE A JOUR DES INFORMATIONS
 usersRouter.patch("/update", auth, async (req, res) => {
     console.log(req.user._id);
-    // const user = await User.findOne({ email: req.body.email });
-    /*
+    const user = await User.findOne({ _id: req.user._id });
+    
+
     for (let attribut in req.body) {
-        req.user[attribut] = req.body[attribut];
+        user[attribut] = req.body[attribut];
       }
-      await contact.save();
-      return res.send(contact);
-      */
+      await user.save();
+      return res.send(user);
 });
 
 usersRouter.post("/delete", async (req, res) => {});
