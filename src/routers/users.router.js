@@ -4,6 +4,7 @@ import _ from "lodash";
 import User from "../models/user.model.js";
 import dotenv from "dotenv";
 import auth from "../middleware/auth.js";
+import mongoose from "mongoose";
 
 
 dotenv.config();
@@ -77,5 +78,27 @@ usersRouter.patch("/updateType", auth, async (req, res) => {
     await user.save();
     return res.send("L'utilisateur est devenu enseignant.");
 });
+
+// Obtenir la liste de tous les utilisateurs
+usersRouter.get("/", async (_, res) => {
+  const users = await User.find().select("firstname lastname bio linkedin type");
+  return res.send(users);
+});
+
+// Obtenir les informations d'un utilisateur
+usersRouter.get("/:id", async (req,res) =>{
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)){
+    return res.sendStatus(404);
+  }
+  const user = await User.findById(req.params.id);
+  if (!user){
+    return res.status(404).send(`L'utilisateur'avec l'id ${req.params.id} n'existe pas.`);
+  }
+  for (let attribut in req.body){
+    user[contact] = req.body[attribut];
+  }
+  await user.save();
+  return res.send(user);
+})
 
 export default usersRouter;
