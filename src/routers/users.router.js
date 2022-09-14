@@ -3,11 +3,14 @@ import bcrypt from "bcrypt";
 import _ from "lodash";
 import User from "../models/user.model.js";
 import dotenv from "dotenv";
+import auth from "../middleware/auth.js";
+
 
 dotenv.config();
 
 const usersRouter = express.Router();
 
+// CREATION D'UN UTILISATEUR
 usersRouter.post("/signup", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (user) {
@@ -23,6 +26,7 @@ usersRouter.post("/signup", async (req, res) => {
   return res.status(201).send(_.pick(newUser, ["firstname", "lastname", "email"]));
 });
 
+// CONNEXION D'UN UTILISATEUR
 usersRouter.post("/signin", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
@@ -41,10 +45,21 @@ usersRouter.post("/signin", async (req, res) => {
   });
 });
 
-usersRouter.post("/update", async (req, res) => {});
+// MISE A JOUR DES INFORMATIONS
+usersRouter.patch("/update", auth, async (req, res) => {
+    console.log(req.user._id);
+    // const user = await User.findOne({ email: req.body.email });
+    /*
+    for (let attribut in req.body) {
+        req.user[attribut] = req.body[attribut];
+      }
+      await contact.save();
+      return res.send(contact);
+      */
+});
 
 usersRouter.post("/delete", async (req, res) => {});
 
-usersRouter.post("/becomeTeacher", async (req, res) => {});
+usersRouter.post("/updateType", async (req, res) => {});
 
 export default usersRouter;
