@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema(
       linkedin: {
         type: String,
       },
-      userType: {
+      type: {
         type: Array,
         required: true,
       },
@@ -38,6 +38,7 @@ const UserSchema = new mongoose.Schema(
       {
         _id: this._id,
         name: this.name,
+        type: this.type
       },
       process.env.SECRET_KEY
     );
