@@ -7,10 +7,11 @@ const app = express();
 
 dotenv.config();
 
-mongoose.connect(process.env.DATABASE_URL)
-.then(() => {
-    loading(app);
-  })
-.catch((err) => {
-    console.error(`Source de l'erreur : ${err.message}`);
-});
+mongoose
+	.connect(process.env.DATABASE_URL)
+	.then(() => {
+		loading(app);
+	})
+	.catch((err) => {
+		console.error(`Source de l'erreur : ${err.message}`);
+	});
