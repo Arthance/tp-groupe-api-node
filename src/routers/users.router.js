@@ -78,5 +78,4 @@ usersRouter.patch("/updateType", auth, async (req, res) => {
     return res.send("L'utilisateur est devenu enseignant.");
 });
 
-
 export default usersRouter;
