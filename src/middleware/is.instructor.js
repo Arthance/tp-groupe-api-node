@@ -1,13 +1,7 @@
 function isInstructor(req, res, next) {
-  try {
-    for (const role of req.user.type) {
-      if (role === "teacher") {
-        next();
-      } else {
-        throw new Error();
-      }
-    }
-  } catch (error) {
+  if (req.user.type.find((role) => role === "teacher")) {
+    next();
+  } else {
     return res.status(403).send("Only teachers can do that !");
   }
 }
