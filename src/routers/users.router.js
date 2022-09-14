@@ -47,19 +47,35 @@ usersRouter.post("/signin", async (req, res) => {
 
 // MISE A JOUR DES INFORMATIONS
 usersRouter.patch("/update", auth, async (req, res) => {
-    console.log(req.user._id);
-    // const user = await User.findOne({ email: req.body.email });
-    /*
+    const user = await User.findOne({ _id: req.user._id });
+
     for (let attribut in req.body) {
-        req.user[attribut] = req.body[attribut];
+        user[attribut] = req.body[attribut];
       }
-      await contact.save();
-      return res.send(contact);
-      */
+      await user.save();
+      return res.send(user);
 });
 
-usersRouter.post("/delete", async (req, res) => {});
+// SUPPRIMER SON PROPRE COMPTE
+usersRouter.delete("/delete", auth, async (req, res) => {
 
-usersRouter.post("/updateType", async (req, res) => {});
+    await User.deleteOne({ _id: req.user._id });
+    return res.send("Utilisateur supprimé avec succès");
+
+});
+
+// DEVENIR DE TYPE ENSEIGNANT
+usersRouter.patch("/updateType", auth, async (req, res) => {
+
+    for (const role of req.user.type) {
+        if(role === "teacher") {
+            return res.send("L'utilisateur est déjà professeur");
+        }
+    }
+    const user = await User.findOne({ _id: req.user._id });
+    user.type.push("teacher");
+    await user.save();
+    return res.send("L'utilisateur est devenu enseignant.");
+});
 
 export default usersRouter;
