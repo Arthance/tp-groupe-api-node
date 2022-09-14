@@ -22,11 +22,9 @@ const UserSchema = new mongoose.Schema(
       },
       bio: {
         type: String,
-        required: true,
       },
       linkedin: {
         type: String,
-        required: true,
       },
       userType: {
         type: Array,
