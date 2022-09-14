@@ -3,11 +3,11 @@ import jwt from "jsonwebtoken";
 
 const UserSchema = new mongoose.Schema(
     {
-      name: {
+      firstname: {
         type: String,
         required: true,
       },
-      surname: {
+      lastname: {
         type: String,
         required: true,
       },

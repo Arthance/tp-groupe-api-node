@@ -20,7 +20,7 @@ usersRouter.post("/signup", async (req, res) => {
 
   await newUser.save();
 
-  return res.status(201).send(_.pick(newUser, ["name", "surname", "email"]));
+  return res.status(201).send(_.pick(newUser, ["firstname", "lastname", "email"]));
 });
 
 usersRouter.post("/signin", async (req, res) => {
