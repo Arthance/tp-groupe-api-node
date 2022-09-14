@@ -34,12 +34,20 @@ coursesRouter.patch("/:id", auth, async (req, res) => {
 			.send(`Le cours avec l'id ${req.params.id} n'existe pas`);
 	}
 
-	for (let attribut in req.body) {
-		course[attribut] = req.body[attribut];
-	}
+	if (course.author == req.user._id) {
+		console.log("success");
+		for (let attribut in req.body) {
+			course[attribut] = req.body[attribut];
+		}
 
-	await course.save();
-	return res.send(course);
+		await course.save();
+		return res.send(course);
+	} else {
+		console.log("fail");
+		return res
+			.status(404)
+			.send(`Vous n'êtes pas authorisé à modifier ce cours`);
+	}
 });
 
 export default coursesRouter;
