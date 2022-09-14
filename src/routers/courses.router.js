@@ -8,6 +8,11 @@ dotenv.config();
 
 const coursesRouter = express.Router();
 
+coursesRouter.get("/", async (_, res) => {
+	const courses = await Course.find();
+	return res.send(courses);
+});
+
 coursesRouter.post("/", auth, async (req, res) => {
 	const course = new Course(req.body);
 	course.author = req.user._id;
