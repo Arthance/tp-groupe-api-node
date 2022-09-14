@@ -6,7 +6,7 @@ import videosRouter from "./videos.router.js";
 
 const PORT = process.env.PORT || 3000;
 
-export default function loader(app) {
+export default function loading(app) {
 	app.use(express.json());
 	app.use(cors());
 	app.use("/jojolearning/users", usersRouter);
